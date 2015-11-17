@@ -7,7 +7,8 @@ public class ZenController : MonoBehaviour {
 	public Text timeText;
 	GameObject newDot;
 	float gameTime;
-	int seconds;
+	int secondsOnes;
+	int secondsTens;
 	int minutes;
 	int redDotCount;
 	float blueDotCount;
@@ -16,7 +17,8 @@ public class ZenController : MonoBehaviour {
 	void Start(){
 		gameTime = 0;
 		tempCount = 1;
-		seconds = 0;
+		secondsOnes = 0;
+		secondsTens = 0;
 		minutes = 0;
 		redDotCount = 0;
 		blueDotCount = 0;
@@ -27,10 +29,11 @@ public class ZenController : MonoBehaviour {
 		gameTime = gameTime + Time.deltaTime;
 		tempCount = tempCount - Time.deltaTime;
 		int dotChoose = Random.Range (0, 3);
-		seconds = (int)(gameTime % 60);
+		secondsOnes = (int)(gameTime % 10);
+		secondsTens = (int)(gameTime / 10);
 		minutes = (int)(gameTime / 60);
 
-		timeText.text = minutes + ":" + seconds;
+		timeText.text = minutes + ":" + secondsTens + secondsOnes;
 
 		if (tempCount < 0) {
 			if (dotChoose == 2 && redDotCount < 3) {
