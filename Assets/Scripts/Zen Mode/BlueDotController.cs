@@ -12,8 +12,12 @@ public class BlueDotController : MonoBehaviour {
 	void Update () {
 		deleteTimer = deleteTimer - Time.deltaTime;
 		if (deleteTimer < 0) {
+			ZenController.misses = ZenController.misses + 1;
 			Destroy(gameObject);
 		}
 	}
-
+	void OnMouseDown(){
+		ZenController.score = ZenController.score + 1;
+		Destroy (gameObject);
+	}
 }

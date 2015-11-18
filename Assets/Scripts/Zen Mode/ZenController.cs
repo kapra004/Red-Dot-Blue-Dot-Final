@@ -4,7 +4,11 @@ using UnityEngine.UI;
 
 public class ZenController : MonoBehaviour {
 
+	public static int misses;
+	public static int score;
 	public Text timeText;
+	public Text scoreText;
+	public Text missesText;
 	GameObject newDot;
 	float gameTime;
 	int secondsOnes;
@@ -15,6 +19,8 @@ public class ZenController : MonoBehaviour {
 	float tempCount;
 	
 	void Start(){
+		misses = 0;
+		score = 0;
 		gameTime = 0;
 		tempCount = 1;
 		secondsOnes = 0;
@@ -40,6 +46,12 @@ public class ZenController : MonoBehaviour {
 		minutes = (int)(gameTime / 60);
 
 		timeText.text = minutes + ":" + secondsTens + secondsOnes;
+		scoreText.text = "Score:" + score;
+		missesText.text = "Misses:" + misses;
+
+		if (misses <= 3){
+			Application.LoadLevel ("Game Over");
+		}
 
 		if (tempCount < 0) {
 			if (dotChoose == 2 && redDotCount < 3) {
