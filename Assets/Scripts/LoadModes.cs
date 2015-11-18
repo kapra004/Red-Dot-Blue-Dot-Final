@@ -12,4 +12,9 @@ public class LoadModes : MonoBehaviour {
 	{
 		Application.LoadLevel ("Zen Mode");
 	}
+
+	public void mainMenu()
+	{
+		Application.LoadLevel ("Main Menu");
+	}
 }

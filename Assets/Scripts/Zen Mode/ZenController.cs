@@ -49,7 +49,7 @@ public class ZenController : MonoBehaviour {
 		scoreText.text = "Score:" + score;
 		missesText.text = "Misses:" + misses;
 
-		if (misses <= 3){
+		if (misses >= 3){
 			Application.LoadLevel ("Game Over");
 		}
 
