@@ -30,7 +30,11 @@ public class ZenController : MonoBehaviour {
 		tempCount = tempCount - Time.deltaTime;
 		int dotChoose = Random.Range (0, 3);
 		secondsOnes = (int)(gameTime % 10);
-		secondsTens = (int)(gameTime / 10);
+		if (gameTime < 60) {
+			secondsTens = (int)(gameTime / 10);
+		} else {
+			secondsTens = (int)((gameTime / 10) - 6*minutes);
+		}
 		minutes = (int)(gameTime / 60);
 
 		timeText.text = minutes + ":" + secondsTens + secondsOnes;
