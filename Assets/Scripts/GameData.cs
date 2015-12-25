@@ -6,9 +6,9 @@ using System.IO;
 
 public class GameData : MonoBehaviour {
 	public static GameData control;
-	public int highScore;
-	public int medHighScore;
-	public int hardHighScore;
+	public int zenHighScore;
+	//public int medHighScore;
+	//public int hardHighScore;
 	
 	void Awake(){
 		if(control == null)
@@ -21,27 +21,27 @@ public class GameData : MonoBehaviour {
 			Destroy(this.gameObject);
 		}	
 	}
-	public void Save()
+	public void zenSave()
 	{
 		BinaryFormatter bf = new BinaryFormatter();
-		FileStream file = File.Create(Application.persistentDataPath + "/myPlayerInfo.dat");
+		FileStream file = File.Create(Application.persistentDataPath + "/myZenPlayerInfo.dat");
 		
 		PlayerData  data = new PlayerData();
-		data.highScore = highScore;
+		data.zenHighScore = zenHighScore;
 		bf.Serialize(file,data);
 		file.Close();
 	}
-	public void Load()
+	public void zenLoad()
 	{
-		if(File.Exists(Application.persistentDataPath + "/myPlayerInfo.dat"))
+		if(File.Exists(Application.persistentDataPath + "/myZenPlayerInfo.dat"))
 		{
 			BinaryFormatter bf = new BinaryFormatter();
-			FileStream file = File.Open(Application.persistentDataPath + "/myPlayerInfo.dat",FileMode.Open);
+			FileStream file = File.Open(Application.persistentDataPath + "/myZenPlayerInfo.dat",FileMode.Open);
 			PlayerData data = (PlayerData)bf.Deserialize(file);
-			highScore = data.highScore;
+			zenHighScore = data.zenHighScore;
 		}	
 	}
-	public void medSave ()
+	/*public void medSave ()
 	{
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file = File.Create(Application.persistentDataPath + "/myMedPlayerInfo.dat");
@@ -82,13 +82,13 @@ public class GameData : MonoBehaviour {
 			PlayerData data = (PlayerData)bf.Deserialize(file);
 			hardHighScore = data.hardHighScore;
 		}	
-	}
+	}*/
 }
 
 [Serializable]
 class PlayerData
 {
-	public int highScore;
-	public int medHighScore;
-	public int hardHighScore;
+	public int zenHighScore;
+	//public int medHighScore;
+	//public int hardHighScore;
 }

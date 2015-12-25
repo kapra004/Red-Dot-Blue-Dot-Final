@@ -18,6 +18,7 @@ public class BlueDotController : MonoBehaviour {
 	}
 	void OnMouseDown(){
 		ZenController.score = ZenController.score + 1;
+		ZenController.playSound = 1;
 		Destroy (gameObject);
 	}
 }
