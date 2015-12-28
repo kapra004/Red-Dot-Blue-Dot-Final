@@ -11,6 +11,7 @@ public class ZenController : MonoBehaviour {
 	public Text timeText;
 	public Text scoreText;
 	public Text missesText;
+	public Text highScoreText;
 
 	AudioSource source;
 	GameObject newDot;
@@ -38,6 +39,7 @@ public class ZenController : MonoBehaviour {
 		redDotCount = 0;
 		blueDotCount = 0;
 		timeText.text = "0:00";
+		GameData.control.zenLoad ();
 	}
 	
 	void Update(){
@@ -52,15 +54,24 @@ public class ZenController : MonoBehaviour {
 		} else {
 			secondsTens = (int)((gameTime / 10) - 6*minutes);
 		}
-
 		minutes = (int)(gameTime / 60);
 
 		timeText.text = minutes + ":" + secondsTens + secondsOnes;
+
+		//Other Text Objects
 		scoreText.text = "Score:" + score;
 		missesText.text = "Misses:" + misses;
+		if (score < GameData.control.zenHighScore) {
+			highScoreText.text = "High Score:" + GameData.control.zenHighScore;
+		} else {
+			highScoreText.text = "High Score:" + score;
+		}
 
 		//Game Over
 		if (misses >= 3){
+			if (score == GameData.control.zenHighScore){
+				GameData.control.zenSave ();
+			}
 			Application.LoadLevel ("Game Over");
 		}
 
@@ -87,6 +98,11 @@ public class ZenController : MonoBehaviour {
 		if (playSound == 1) {
 			source.PlayOneShot (popSound, 1.0F);
 			playSound = 0;
+		}
+
+		//High Score Counter
+		if (score > GameData.control.zenHighScore) {
+			GameData.control.zenHighScore = score;
 		}
 	}
 }

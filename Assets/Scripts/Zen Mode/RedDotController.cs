@@ -16,6 +16,9 @@ public class RedDotController : MonoBehaviour {
 		}
 	}
 	void OnMouseDown(){
+		if (ZenController.score == GameData.control.zenHighScore){
+			GameData.control.zenSave ();
+		}
 		Application.LoadLevel ("Game Over");
 	}
 }

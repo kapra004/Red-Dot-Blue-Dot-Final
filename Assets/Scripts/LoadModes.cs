@@ -23,13 +23,11 @@ public class LoadModes : MonoBehaviour {
 
 	public void pauseGame(){
 		Time.timeScale = 0;
-		//mainCanvas.SetActive (false);
 		pauseCanvas.SetActive (true);
 	}
 
-	public void playGame(){
+	public void resumeGame(){
 		Time.timeScale = 1;
-		//mainCanvas.SetActive (true);
 		pauseCanvas.SetActive (false);
 	}
 }
